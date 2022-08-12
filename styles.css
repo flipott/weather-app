@@ -1,0 +1,77 @@
+:root {
+  font-family: sans-serif;
+}
+
+.container {
+  display: flex;
+  flex-direction: column;
+}
+
+.weather-card {
+  display: none;
+  flex-direction: column;
+  gap: 20px;
+  border: solid black 2px;
+  border-radius: 8px;
+  width: fit-content;
+  padding: 25px;
+}
+
+.weather-header {
+  display: flex;
+  gap: 20px;
+  justify-content: center;
+  font-weight: bold;
+  font-size: 2rem;
+}
+
+.weather-description {
+  display: flex;
+  justify-content: center;
+  text-transform: capitalize;
+}
+
+#city-error {
+  color: red;
+  visibility: hidden;
+}
+
+.temp-row {
+  display: flex;
+  gap: 20px;
+  align-items: center;
+}
+
+.title {
+  width: 120px;
+  font-weight: bold;
+}
+
+.min-max-temps {
+  display: flex;
+  flex-direction: column;
+  font-size: 0.75rem;
+}
+
+.unit-switch {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.unit-switch p {
+  margin-bottom: 0;
+}
+
+.humidity-row {
+  display: flex;
+  gap: 20px;
+  justify-content: center;
+}
+
+.sun-section {
+  display: flex;
+  gap: 20px;
+  justify-content: space-around;
+}
