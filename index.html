@@ -10,50 +10,55 @@
   </head>
   <body>
     <div class="container">
+      <div class="header"><h1>QuickWeather</h1></div>
       <div class="search-section">
         <input type="text" placeholder="Enter a city..." id="search" />
         <button id="confirm-search">Go</button>
       </div>
       <span id="city-error">Location not found. Please try again.</span>
-      <div class="weather-card">
-        <div class="weather-header">
-          <div class="location"></div>
-          <div class="weather-icon">☁️</div>
-        </div>
-        <div class="weather-description"></div>
-        <div class="temp-row">
-          <div class="title">Temperature</div>
-          <div class="main-num" id="current-temp"></div>
-          <div class="min-max-temps">
-            <div class="max-temp">
-              <div class="min-max-title">High</div>
-              <div class="min-max-num" id="max-num"></div>
+      <div class="main">
+        <div class="weather-card">
+          <div class="weather-header">
+            <div class="location"></div>
+            <div class="weather-icon">
+              <img src="./images/icons/unknown.png" />
             </div>
-            <div class="min-temp">
-              <div class="min-max-title">Low</div>
-              <div class="min-max-num" id="min-num"></div>
+          </div>
+          <div class="weather-description"></div>
+          <div class="temp-row">
+            <div class="title">Temperature</div>
+            <div class="main-num" id="current-temp"></div>
+            <div class="min-max-temps">
+              <div class="max-temp">
+                <div class="min-max-title">High</div>
+                <div class="min-max-num" id="max-num"></div>
+              </div>
+              <div class="min-temp">
+                <div class="min-max-title">Low</div>
+                <div class="min-max-num" id="min-num"></div>
+              </div>
+            </div>
+          </div>
+          <div class="humidity-row">
+            <div class="title">Humidity</div>
+            <div class="main-num" id="humidity"></div>
+          </div>
+          <div class="sun-section">
+            <div class="sunrise">
+              <div class="sun-title">Sunrise</div>
+              <div class="sun-num" id="rise-num"></div>
+            </div>
+            <div class="sunset">
+              <div class="sun-title">Sunset</div>
+              <div class="sun-num" id="set-num"></div>
             </div>
           </div>
           <div class="unit-switch">
-            <p>Switch to <span id="unit">Celsius</span></p>
+            <p>Use <span id="unit">Celsius</span></p>
             <label class="switch">
               <input type="checkbox" id="unit-switcher" />
-              <span class="round slider"></span>
+              <span class="slider"></span>
             </label>
-          </div>
-        </div>
-        <div class="humidity-row">
-          <div class="title">Humidity</div>
-          <div class="main-num" id="humidity"></div>
-        </div>
-        <div class="sun-section">
-          <div class="sunrise">
-            <div class="sun-title">Sunrise</div>
-            <div class="sun-num" id="rise-num"></div>
-          </div>
-          <div class="sunset">
-            <div class="sun-title">Sunset</div>
-            <div class="sun-num" id="set-num"></div>
           </div>
         </div>
       </div>
