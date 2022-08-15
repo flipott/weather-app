@@ -46,6 +46,7 @@ function processWeatherData(weatherData) {
   const currentSky = weatherData.weather[0].description;
   const currentSunrise = convertTime(weatherData.sys.sunrise);
   const currentSunset = convertTime(weatherData.sys.sunset);
+  const currentIcon = weatherData.weather[0].icon;
 
   const weatherObj = {
     currentLocation,
@@ -59,6 +60,7 @@ function processWeatherData(weatherData) {
     currentSky,
     currentSunrise,
     currentSunset,
+    currentIcon,
   };
 
   return weatherObj;
@@ -67,18 +69,19 @@ function processWeatherData(weatherData) {
 function displayWeatherData(currentWeather) {
   cardLocation.textContent = currentWeather.currentLocation;
   cardDescription.textContent = currentWeather.currentSky;
-  cardHumidity.textContent = currentWeather.currentHumidity;
+  cardHumidity.textContent = `${currentWeather.currentHumidity}%`;
   cardRise.textContent = currentWeather.currentSunrise;
   cardSet.textContent = currentWeather.currentSunset;
+  cardIcon.innerHTML = `<img src="./images/icons/${currentWeather.currentIcon}.png" />`;
 
   if (measurementUnit === "imperial") {
-    cardCurrentTemp.textContent = currentWeather.currentTemp;
-    cardMax.textContent = currentWeather.currentMaxTemp;
-    cardMin.textContent = currentWeather.currentMinTemp;
+    cardCurrentTemp.textContent = `${currentWeather.currentTemp}°`;
+    cardMax.textContent = `${currentWeather.currentMaxTemp}°`;
+    cardMin.textContent = `${currentWeather.currentMinTemp}°`;
   } else {
-    cardCurrentTemp.textContent = currentWeather.currentTempCel;
-    cardMax.textContent = currentWeather.currentMaxTempCel;
-    cardMin.textContent = currentWeather.currentMinTempCel;
+    cardCurrentTemp.textContent = `${currentWeather.currentTempCel}°`;
+    cardMax.textContent = `${currentWeather.currentMaxTempCel}°`;
+    cardMin.textContent = `${currentWeather.currentMinTempCel}°`;
   }
 }
 
@@ -106,6 +109,14 @@ function runWeatherInfo(search) {
 confirmSearch.addEventListener("click", () => {
   const search = document.getElementById("search").value;
   runWeatherInfo(search);
+});
+
+document.getElementById("search").addEventListener("keyup", (event) => {
+  if (event.key === "Enter") {
+    const search = document.getElementById("search").value;
+    runWeatherInfo(search);
+    document.getElementById("search").blur();
+  }
 });
 
 unitSwitch.addEventListener("change", () => {
