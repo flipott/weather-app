@@ -1,3 +1,4 @@
+// Initialize DOM
 const cardDiv = document.querySelector(".weather-card");
 const cardLocation = document.querySelector(".location");
 const cardIcon = document.querySelector(".weather-icon");
@@ -9,12 +10,24 @@ const cardHumidity = document.getElementById("humidity");
 const cardRise = document.getElementById("rise-num");
 const cardSet = document.getElementById("set-num");
 const confirmSearch = document.getElementById("confirm-search");
-
+const loader = document.getElementById("loading-icon");
 const unitSwitch = document.getElementById("unit-switcher");
-let measurementUnit = "imperial";
 const apiKey = "c2465f0304172a924dec96df78fca3f6";
+
+let measurementUnit = "imperial";
 let currentDataSet;
 
+// Show loading icon
+function showLoader() {
+  loader.classList.add("show");
+}
+
+// Hide loading icon
+function hideLoader() {
+  loader.classList.remove("show");
+}
+
+// Convert date from epoch to formatted local time string
 function convertTime(time) {
   const date = new Date(0);
   date.setUTCSeconds(time);
@@ -25,11 +38,13 @@ function convertTime(time) {
   return dateStr;
 }
 
+// Convert temperature to Celsius
 function fahrenheitToCelsius(temp) {
   const cel = (temp - 32) * 0.5556;
   return cel;
 }
 
+// Gather necessary weather data to be used
 function processWeatherData(weatherData) {
   const currentLocation = weatherData.name;
   const currentTemp = Math.trunc(weatherData.main.temp);
@@ -66,6 +81,7 @@ function processWeatherData(weatherData) {
   return weatherObj;
 }
 
+// Display weather data on page
 function displayWeatherData(currentWeather) {
   cardLocation.textContent = currentWeather.currentLocation;
   cardDescription.textContent = currentWeather.currentSky;
@@ -85,22 +101,26 @@ function displayWeatherData(currentWeather) {
   }
 }
 
+// Fetch weather data from API
 async function getWeatherData(apiURL) {
   try {
+    showLoader();
     const response = await fetch(apiURL, { mode: "cors" });
     const weatherData = await response.json();
     const currentWeather = processWeatherData(weatherData);
     currentDataSet = currentWeather;
     displayWeatherData(currentWeather);
+    hideLoader();
     cardDiv.style.display = "flex";
     document.getElementById("city-error").style.visibility = "hidden";
   } catch (error) {
+    hideLoader();
     document.getElementById("city-error").style.visibility = "visible";
   }
 }
 
+// Run weather functions when search is confirmed
 function runWeatherInfo(search) {
-  currentSearch = search;
   const apiURL = `https://api.openweathermap.org/data/2.5/weather?q=${search}&appid=${apiKey}&units=imperial`;
   getWeatherData(apiURL);
   document.getElementById("search").value = "";
@@ -119,6 +139,7 @@ document.getElementById("search").addEventListener("keyup", (event) => {
   }
 });
 
+// Change temperature units based on checkbox
 unitSwitch.addEventListener("change", () => {
   if (unitSwitch.checked) {
     measurementUnit = "metric";

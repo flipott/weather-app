@@ -5,7 +5,13 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="stylesheet" href="styles.css" />
-    <script src="index.js" defer></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@400;500;600;700&family=Righteous&display=swap"
+      rel="stylesheet"
+    />
+    <script src="main.js" defer></script>
     <title>Weather App</title>
   </head>
   <body>
@@ -16,6 +22,7 @@
         <button id="confirm-search">Go</button>
       </div>
       <span id="city-error">Location not found. Please try again.</span>
+      <span id="loading-icon"></span>
       <div class="main">
         <div class="weather-card">
           <div class="weather-header">
