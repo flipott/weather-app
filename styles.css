@@ -1,0 +1,266 @@
+:root {
+  --ghost-white: hsla(235, 31%, 93%, 1);
+  --light-gray: hsla(0, 0%, 81%, 1);
+  --quick-silver: hsla(240, 1%, 65%, 1);
+  --raisin-black: hsla(244, 16%, 18%, 1);
+  --blizzard-blue: hsla(244, 16%, 55%, 1);
+  font-family: "Baloo 2", sans-serif;
+  font-family: "Righteous", sans-serif;
+  font-size: 1.25rem;
+}
+
+html,
+body {
+  background: var(--raisin-black);
+  margin: 0;
+  font-family: "Baloo 2", sans-serif;
+}
+
+.container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+h1 {
+  margin: 0;
+  padding: 0;
+  color: rgba(246, 167, 28, 255);
+  font-family: "Righteous", sans-serif;
+}
+
+.header {
+  height: 100px;
+  background: var(--blizzard-blue);
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.search-section {
+  padding: 25px 25px 10px 25px;
+  display: flex;
+}
+
+#search {
+  width: 275px;
+  padding: 5px 0;
+  border: none;
+  border-radius: 0;
+  font-size: 1.5rem;
+  text-align: center;
+  background: hsla(244, 16%, 55%, 1);
+  color: var(--ghost-white);
+}
+
+#search:not(:focus)::placeholder {
+  color: hsla(235, 31%, 93%, 0.7);
+  opacity: 1;
+}
+
+#confirm-search {
+  padding: 10px;
+  border: none;
+  font-weight: bold;
+}
+
+#search:focus {
+  outline: solid white 2px;
+}
+
+#search:focus::placeholder {
+  color: transparent;
+}
+
+.weather-card {
+  display: none;
+  flex-direction: column;
+  border: solid var(--ghost-white) 2px;
+  color: white;
+  border-radius: 8px;
+  width: 500px;
+  height: 525px;
+  padding: 25px;
+  background: hsla(244, 16%, 55%, 1);
+  position: relative;
+}
+
+.weather-header ~ div {
+  margin: 8px;
+}
+
+.weather-header {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+  font-weight: bold;
+  font-size: 2rem;
+  align-items: center;
+}
+
+.weather-description {
+  display: flex;
+  justify-content: center;
+  text-transform: capitalize;
+}
+
+#city-error {
+  color: red;
+  visibility: hidden;
+}
+
+.temp-row {
+  display: flex;
+  gap: 30px;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+}
+
+.title {
+  width: 120px;
+  font-weight: bold;
+}
+
+.min-max-title,
+.sun-title {
+  font-weight: bold;
+}
+
+.min-max-temps {
+  display: flex;
+  flex-direction: column;
+  font-size: 0.78rem;
+  text-align: center;
+}
+
+.main-num {
+  font-size: 2rem;
+}
+
+.unit-switch {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  position: absolute;
+  left: 550px;
+  top: 150px;
+  width: 150px;
+}
+
+.main {
+  display: flex;
+}
+
+.unit-switch p {
+  margin-bottom: 0;
+}
+
+.humidity-row {
+  display: flex;
+  gap: 20px;
+  justify-content: center;
+  align-items: center;
+}
+
+.sun-section {
+  display: flex;
+  gap: 20px;
+  justify-content: space-around;
+  text-align: center;
+}
+
+.switch {
+  position: relative;
+  display: inline-block;
+  width: 60px;
+  height: 34px;
+}
+
+.switch input {
+  opacity: 0;
+  width: 0;
+  height: 0;
+}
+
+.slider {
+  position: absolute;
+  cursor: pointer;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: #ccc;
+  -webkit-transition: 0.4s;
+  transition: 0.4s;
+}
+
+.slider:before {
+  position: absolute;
+  content: "";
+  height: 26px;
+  width: 26px;
+  left: 4px;
+  bottom: 4px;
+  background-color: white;
+  -webkit-transition: 0.4s;
+  transition: 0.4s;
+}
+
+input:checked + .slider {
+  background-color: var(--blizzard-blue);
+}
+
+input:focus + .slider {
+  box-shadow: 0 0 1px var(--blizzard-blue);
+}
+
+input:checked + .slider:before {
+  -webkit-transform: translateX(26px);
+  -ms-transform: translateX(26px);
+  transform: translateX(26px);
+}
+
+#loading-icon {
+  width: 1.5rem;
+  height: 1.5rem;
+  border: 5px solid black;
+  border-top: 6px solid var(--ghost-white);
+  margin: auto;
+  visibility: hidden;
+  border-radius: 100%;
+  animation: cycle 1s infinite linear;
+}
+
+#loading-icon.show {
+  visibility: visible;
+}
+
+@keyframes cycle {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+@media (max-width: 850px) {
+  .unit-switch {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    align-self: center;
+    left: 0;
+    top: 0px;
+    width: 150px;
+  }
+
+  .weather-card {
+    width: fit-content;
+  }
+}
